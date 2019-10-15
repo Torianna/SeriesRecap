@@ -1,2 +1,2 @@
 # SeriesRecap
-Web application with TV series I watched. Just for pratice
+Web application with TV series I watched. Just for practise
