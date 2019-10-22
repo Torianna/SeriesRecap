@@ -43,7 +43,7 @@ public class RatesServiceImpl implements RatesService {
             ratesRepository.deleteById(id);
             ratesRepository.save(new Rates(rate.getId(),rate.getSeries(),
                     rate.getPlot(),rate.getEffects(),rate.getBudget(),
-                    rate.getEnding());
+                    rate.getEnding()));
 
             return rate;
         }
