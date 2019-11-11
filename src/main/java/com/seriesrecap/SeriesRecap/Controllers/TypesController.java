@@ -44,7 +44,7 @@ public class TypesController {
     }
 
     @PostMapping("")
-    public ResponseEntity<Types> saveTypes(@PathVariable Types type)
+    public ResponseEntity<Types> saveTypes(@RequestBody Types type)
     {
         Types savedType= typesService.saveType(type);
 

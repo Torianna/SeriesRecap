@@ -55,7 +55,7 @@ public class SeriesController {
     }
 
     @PostMapping("")
-    public ResponseEntity<Series> saveSeries(@PathVariable Series series)
+    public ResponseEntity<Series> saveSeries(@RequestBody Series series)
     {
         Series savedSeries= seriesService.saveSeries(series);
 
