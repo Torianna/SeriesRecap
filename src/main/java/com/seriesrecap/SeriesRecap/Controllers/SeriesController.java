@@ -63,4 +63,5 @@ public class SeriesController {
                 new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
+
 }

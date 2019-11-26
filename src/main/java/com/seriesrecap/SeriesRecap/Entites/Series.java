@@ -21,6 +21,7 @@ public class Series {
     private String year;
     private String photo; //as an url
     private String description;
+    private float totalScore;
 
 
     @ManyToOne(fetch = FetchType.LAZY)

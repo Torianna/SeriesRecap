@@ -28,6 +28,7 @@ public class Rates {
     private int effects;
     private int ending;
     private int budget;
+    private float totalScore;
 
 
 

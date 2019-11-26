@@ -52,9 +52,14 @@ public class RatesController {
 
     @PostMapping("")
     public ResponseEntity<Rates> addRate(@RequestBody Rates rates) {
-        ratesService.saveRate(rates);
-        Rates rate = new Rates(rates.getId(),rates.getSeries(),rates.getEffects(),rates.getBudget(),rates.getEnding(),rates.getPlot());
+//        ratesService.saveRate(rates);
+//        Rates rate = new Rates(rates.getId(),rates.getSeries(),rates.getEffects(),rates.getBudget(),rates.getEnding(),rates.getPlot(),rates.getTotalScore());
+//
+//        return new ResponseEntity<>(rate, HttpStatus.OK);
+        Rates savedRate= ratesService.saveRate(rates);
 
-        return new ResponseEntity<>(rate, HttpStatus.OK);
+        return savedRate != null ? new ResponseEntity<>(savedRate, HttpStatus.OK):
+                new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
+    
 }
