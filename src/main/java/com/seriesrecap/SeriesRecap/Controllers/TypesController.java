@@ -17,7 +17,7 @@ public class TypesController {
     final private TypesService typesService;
 
     @GetMapping("/{id}")
-    public ResponseEntity<Types> getTypesById (@PathVariable Long id){
+    public ResponseEntity<Types> getTypesById (@PathVariable int id){
 
         Types types=typesService.getTypeById(id);
 
@@ -26,7 +26,7 @@ public class TypesController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Types> deleteTypesById (@PathVariable Long id)
+    public ResponseEntity<Types> deleteTypesById (@PathVariable int id)
     {
         Types types=typesService.deleteTypeById(id);
 
@@ -35,7 +35,7 @@ public class TypesController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Types> editTypesById (@PathVariable Long id, Types type)
+    public ResponseEntity<Types> editTypesById (@PathVariable int id, Types type)
     {
         Types editedType =typesService.editTypeById(id, type);
 

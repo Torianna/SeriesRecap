@@ -22,7 +22,7 @@ public class RatesController {
     private final RatesService ratesService;
 
     @GetMapping("/{id}")
-    public ResponseEntity<Rates> getRatesById (@PathVariable Long id){
+    public ResponseEntity<Rates> getRatesById (@PathVariable int id){
         Rates rates=ratesService.getRateById(id);
 
         return rates != null ? new ResponseEntity<>(rates, HttpStatus.OK) :
@@ -30,7 +30,7 @@ public class RatesController {
     };
 
     @PutMapping("/{id}")
-    public ResponseEntity<Rates> editRateById(@PathVariable Long id,
+    public ResponseEntity<Rates> editRateById(@PathVariable int id,
                                                             @RequestBody Rates rates) {
 
         Rates editRate = ratesService.editRateById(id,rates);
@@ -41,7 +41,7 @@ public class RatesController {
 
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Rates> deleteRateById(@PathVariable Long id) {
+    public ResponseEntity<Rates> deleteRateById(@PathVariable int id) {
         Rates removedRate = ratesService.deleteRateById(id);
 
 
@@ -61,5 +61,5 @@ public class RatesController {
         return savedRate != null ? new ResponseEntity<>(savedRate, HttpStatus.OK):
                 new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
-    
+
 }

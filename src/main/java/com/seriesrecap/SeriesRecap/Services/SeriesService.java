@@ -8,11 +8,11 @@ public interface SeriesService {
 
     List<Series> getAllSeries();
 
-    Series getSeriesById(Long id);
+    Series getSeriesById(int id);
 
-    Series deleteSeriesById(Long id);
+    Series deleteSeriesById(int id);
 
-    Series editSeriesById(Long id, Series series);
+    Series editSeriesById(int id, Series series);
 
     Series saveSeries(Series series);
 

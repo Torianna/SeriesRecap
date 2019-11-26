@@ -22,7 +22,7 @@ public class SeriesServiceImpl implements SeriesService {
     }
 
     @Override
-    public Series getSeriesById(Long id) {
+    public Series getSeriesById(int id) {
 
         Optional<Series> series = seriesRepository.findById(id);
 
@@ -30,7 +30,7 @@ public class SeriesServiceImpl implements SeriesService {
     }
 
     @Override
-    public Series deleteSeriesById(Long id) {
+    public Series deleteSeriesById(int id) {
 
         Optional<Series> series = seriesRepository.findById(id);
 
@@ -43,7 +43,7 @@ public class SeriesServiceImpl implements SeriesService {
     }
 
     @Override
-    public Series editSeriesById(Long id, Series series) {
+    public Series editSeriesById(int id, Series series) {
         Optional<Series> serie = seriesRepository.findById(id);
         if (serie.isPresent()) {
             seriesRepository.deleteById(id);

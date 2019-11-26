@@ -16,14 +16,14 @@ public class RatesServiceImpl implements RatesService {
     private final RatesRepository ratesRepository; //initialized by using lombok AllArgsConstructor
 
     @Override
-    public Rates getRateById(Long id) {
+    public Rates getRateById(int id) {
         Optional<Rates> rates = ratesRepository.findById(id);
         return rates.orElse(null);
 
     }
 
     @Override
-    public Rates deleteRateById(Long id) {
+    public Rates deleteRateById(int id) {
         Optional<Rates> rates= ratesRepository.findById(id);
 
         if(rates.isPresent())
@@ -35,7 +35,7 @@ public class RatesServiceImpl implements RatesService {
     }
 
     @Override
-    public Rates editRateById(Long id, Rates rate) {
+    public Rates editRateById(int id, Rates rate) {
         Optional<Rates> rates= ratesRepository.findById(id);
 
         if(rates.isPresent())

@@ -4,11 +4,11 @@ import com.seriesrecap.SeriesRecap.Entites.Types;
 
 public interface TypesService {
 
-    Types getTypeById(Long id);
+    Types getTypeById(int id);
 
-    Types deleteTypeById(Long id);
+    Types deleteTypeById(int id);
 
-    Types editTypeById(Long id, Types type);
+    Types editTypeById(int id, Types type);
 
     Types saveType (Types type);
 

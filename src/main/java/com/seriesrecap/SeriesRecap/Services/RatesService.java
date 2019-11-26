@@ -5,11 +5,11 @@ import com.seriesrecap.SeriesRecap.Entites.Rates;
 
 public interface RatesService {
 
-    Rates getRateById(Long id);
+    Rates getRateById(int id);
 
-    Rates deleteRateById(Long id);
+    Rates deleteRateById(int id);
 
-    Rates editRateById(Long id, Rates rate);
+    Rates editRateById(int id, Rates rate);
 
     Rates saveRate(Rates rate);
 }

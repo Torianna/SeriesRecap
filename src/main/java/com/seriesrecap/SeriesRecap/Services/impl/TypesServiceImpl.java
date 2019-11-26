@@ -16,13 +16,13 @@ public class TypesServiceImpl implements TypesService {
     private final TypesRepository typesRepository;
 
     @Override
-    public Types getTypeById(Long id) {
+    public Types getTypeById(int id) {
         Optional<Types> types= typesRepository.findById(id);
         return types.orElse(null) ;
     }
 
     @Override
-    public Types deleteTypeById(Long id) {
+    public Types deleteTypeById(int id) {
         Optional<Types> types= typesRepository.findById(id);
 
         if(types.isPresent())
@@ -35,7 +35,7 @@ public class TypesServiceImpl implements TypesService {
     }
 
     @Override
-    public Types editTypeById(Long id, Types type) {
+    public Types editTypeById(int id, Types type) {
         Optional<Types> types= typesRepository.findById(id);
         if(types.isPresent())
         {

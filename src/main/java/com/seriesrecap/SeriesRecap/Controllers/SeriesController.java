@@ -28,7 +28,7 @@ public class SeriesController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Series> getSeriesById (@PathVariable Long id){
+    public ResponseEntity<Series> getSeriesById (@PathVariable int id){
 
         Series series=seriesService.getSeriesById(id);
 
@@ -37,7 +37,7 @@ public class SeriesController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Series> deleteSeriesById (@PathVariable Long id)
+    public ResponseEntity<Series> deleteSeriesById (@PathVariable int id)
     {
         Series series=seriesService.deleteSeriesById(id);
 
@@ -46,7 +46,7 @@ public class SeriesController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Series> editSeriesById (@PathVariable Long id, Series series)
+    public ResponseEntity<Series> editSeriesById (@PathVariable int id, Series series)
     {
         Series editedSeries =seriesService.editSeriesById(id, series);
 
