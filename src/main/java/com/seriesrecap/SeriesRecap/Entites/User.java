@@ -12,24 +12,18 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name="rates")
+@Table(name="user")
 
-public class Rates {
+public class User {
 
     @Id
     @GeneratedValue
     private int id;
 
-    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
-    @JoinColumn(name = "series_id")
-    private List<Series> series = new ArrayList<>();
 
-    private int plot;
-    private int effects;
-    private int ending;
-    private int budget;
-    private float totalScore;
+    private String name;
 
+    private String surname;
 
-
+    private String password;
 }
