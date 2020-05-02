@@ -48,7 +48,7 @@ public class SeriesServiceImpl implements SeriesService {
         if (serie.isPresent()) {
             seriesRepository.deleteById(id);
             seriesRepository.save(new Series(series.getId(), series.getName(),
-                    series.getPhoto(), series.getYear(), series.getDescription(), series.getTotalScore(), series.getRates()));
+                    series.getPhoto(), series.getYear(), series.getDescription(), series.getTotalScore(),series.getScore(), series.getRates()));
 
             return series;
         }
