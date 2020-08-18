@@ -19,7 +19,7 @@ public class UserController {
     private final UserService userService;
 
     @GetMapping("")
-    public ResponseEntity<List<User>> getAllUsers (){
+    public ResponseEntity<List<User>> getAllUsers(){
 
         List<User> userList=userService.getAllUsers();
 

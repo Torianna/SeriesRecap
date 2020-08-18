@@ -45,7 +45,7 @@ public class UserServiceImpl implements UserService {
 
         if (user.isPresent()) {
             userRepository.deleteById(id);
-            return new User(userRepository.save(userCommand).getId(), userCommand.getName(),
+            return new User(userRepository.save(userCommand).getId(), userCommand.getUserName(),
                     userCommand.getPassword());
         }
         return null;
@@ -54,7 +54,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public User saveUser(User user) {
         userRepository.save(user);
-        return new User(user.getId(), user.getName(),
+        return new User(user.getId(), user.getUserName(),
                 user.getPassword());
     }
 }
