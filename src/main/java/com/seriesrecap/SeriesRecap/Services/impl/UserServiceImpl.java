@@ -5,6 +5,7 @@ import com.seriesrecap.SeriesRecap.Services.UserService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 
@@ -13,6 +14,12 @@ import java.util.Optional;
 public class UserServiceImpl implements UserService {
 
     private final UserRepository userRepository;
+
+
+    @Override
+    public List<User> getAllUsers() {
+        return userRepository.findAll();
+    }
 
     @Override
     public User getUserById(int id) {
@@ -38,7 +45,7 @@ public class UserServiceImpl implements UserService {
 
         if (user.isPresent()) {
             userRepository.deleteById(id);
-            return new User(userRepository.save(userCommand).getId(), userCommand.getName(), userCommand.getSurname(),
+            return new User(userRepository.save(userCommand).getId(), userCommand.getName(),
                     userCommand.getPassword());
         }
         return null;
@@ -47,7 +54,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public User saveUser(User user) {
         userRepository.save(user);
-        return new User(user.getId(), user.getName(), user.getSurname(),
+        return new User(user.getId(), user.getName(),
                 user.getPassword());
     }
 }

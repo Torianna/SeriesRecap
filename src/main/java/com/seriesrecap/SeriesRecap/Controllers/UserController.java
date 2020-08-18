@@ -1,6 +1,8 @@
 package com.seriesrecap.SeriesRecap.Controllers;
 
 
+import java.util.List;
+
 import com.seriesrecap.SeriesRecap.Entites.User;
 import com.seriesrecap.SeriesRecap.Services.UserService;
 import lombok.AllArgsConstructor;
@@ -16,6 +18,14 @@ public class UserController {
 
     private final UserService userService;
 
+    @GetMapping("")
+    public ResponseEntity<List<User>> getAllUsers (){
+
+        List<User> userList=userService.getAllUsers();
+
+        return userList.isEmpty() ? new ResponseEntity<>(userList, HttpStatus.NO_CONTENT):
+           new ResponseEntity<>(userList,HttpStatus.OK);
+    }
 
     @GetMapping("/{id}")
     public ResponseEntity<User> getUserById(@PathVariable int id) {
