@@ -1,7 +1,6 @@
 package com.seriesrecap.SeriesRecap.Repositories;
 
 import java.util.List;
-import java.util.Optional;
 
 import com.seriesrecap.SeriesRecap.Entites.Series;
 import com.seriesrecap.SeriesRecap.Entites.User;

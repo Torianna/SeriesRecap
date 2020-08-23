@@ -2,6 +2,7 @@ package com.seriesrecap.SeriesRecap.Controllers;
 
 
 import com.seriesrecap.SeriesRecap.Entites.Series;
+import com.seriesrecap.SeriesRecap.Entites.User;
 import com.seriesrecap.SeriesRecap.Services.SeriesService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -19,9 +20,9 @@ public class SeriesController {
     final private SeriesService seriesService;
 
     @GetMapping("")
-    public ResponseEntity<List<Series>> getAllSeries (){
+    public ResponseEntity<List<Series>> getAllSeries (User user){
 
-        List<Series> seriesList=seriesService.getAllSeries();
+        List<Series> seriesList=seriesService.getAllSeries(user);
 
         return seriesList.isEmpty() ? new ResponseEntity<>(seriesList, HttpStatus.NO_CONTENT):
                 new ResponseEntity<>(seriesList,HttpStatus.OK);
@@ -36,23 +37,6 @@ public class SeriesController {
                 new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
-    @DeleteMapping("/{id}")
-    public ResponseEntity<Series> deleteSeriesById (@PathVariable int id)
-    {
-        Series series=seriesService.deleteSeriesById(id);
-
-        return series != null ? new ResponseEntity<>(series, HttpStatus.OK):
-                new ResponseEntity<>(HttpStatus.NOT_FOUND);
-    }
-
-    @PutMapping("/{id}")
-    public ResponseEntity<Series> editSeriesById (@PathVariable int id, Series series)
-    {
-        Series editedSeries =seriesService.editSeriesById(id, series);
-
-        return editedSeries != null ? new ResponseEntity<>(editedSeries, HttpStatus.OK):
-                new ResponseEntity<>(HttpStatus.NOT_FOUND);
-    }
 
     @PostMapping("")
     public ResponseEntity<Series> saveSeries(@RequestBody Series series)
