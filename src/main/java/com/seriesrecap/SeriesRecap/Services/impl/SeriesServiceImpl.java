@@ -2,6 +2,7 @@ package com.seriesrecap.SeriesRecap.Services.impl;
 
 
 import com.seriesrecap.SeriesRecap.Entites.Series;
+import com.seriesrecap.SeriesRecap.Entites.User;
 import com.seriesrecap.SeriesRecap.Repositories.SeriesRepository;
 import com.seriesrecap.SeriesRecap.Services.SeriesService;
 import lombok.AllArgsConstructor;
@@ -17,8 +18,9 @@ public class SeriesServiceImpl implements SeriesService {
     private final SeriesRepository seriesRepository;
 
     @Override
-    public List<Series> getAllSeries() {
-        return seriesRepository.findAll();
+    public List<Series> getAllSeries(User user) {
+        List<Series> series =  seriesRepository.findByUser(user);
+        return series;
     }
 
     @Override
@@ -29,31 +31,6 @@ public class SeriesServiceImpl implements SeriesService {
         return series.orElse(null);
     }
 
-    @Override
-    public Series deleteSeriesById(int id) {
-
-        Optional<Series> series = seriesRepository.findById(id);
-
-        if (series.isPresent()) {
-            seriesRepository.deleteById(id);
-
-            return series.get();
-        }
-        return null;
-    }
-
-    @Override
-    public Series editSeriesById(int id, Series series) {
-        Optional<Series> serie = seriesRepository.findById(id);
-        if (serie.isPresent()) {
-            seriesRepository.deleteById(id);
-            seriesRepository.save(new Series(series.getId(), series.getName(),
-                    series.getPhoto(), series.getYear(), series.getDescription(), series.getTotalScore(),series.getScore()));
-
-            return series;
-        }
-        return null;
-    }
 
     @Override
     public Series saveSeries(Series series) {

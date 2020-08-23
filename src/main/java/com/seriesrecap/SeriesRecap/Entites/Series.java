@@ -23,7 +23,5 @@ public class Series {
     private String description;
     private float totalScore;
     private float score;
-
-
-
+    User user;
 }
