@@ -25,12 +25,5 @@ public class Series {
     private float score;
 
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "rates_id")
-    private Rates rates;
-
-
-
-
 
 }

@@ -24,4 +24,9 @@ public class User {
     private String userName;
 
     private String password;
+
+
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+    @JoinColumn(name = "user_id")
+    private List<Series> series = new ArrayList<>();
 }
