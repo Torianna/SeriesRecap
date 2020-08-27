@@ -23,5 +23,8 @@ public class Series {
     private String description;
     private float totalScore;
     private float score;
+
+    @ManyToOne
+    @JoinColumn(name="user_id",nullable=false)
     private User user;
 }

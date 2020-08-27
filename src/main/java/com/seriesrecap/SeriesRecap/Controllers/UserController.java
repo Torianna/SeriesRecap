@@ -32,7 +32,7 @@ public class UserController {
         User user = userService.getUserById(id);
 
         return user != null ? new ResponseEntity<>(user, HttpStatus.OK) :
-                new ResponseEntity<>(HttpStatus.NOT_FOUND);
+           new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
     @PostMapping("")
@@ -40,17 +40,17 @@ public class UserController {
         User savedUser= userService.saveUser(user);
 
         return savedUser != null ? new ResponseEntity<>(savedUser, HttpStatus.OK):
-                new ResponseEntity<>(HttpStatus.NOT_FOUND);
+           new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
     @PutMapping("/{id}")
     public ResponseEntity<User> editUserById(@PathVariable int id,
-                                                @RequestBody User user) {
+                                             @RequestBody User user) {
 
         User editedUser =userService.editUserById(id, user);
 
         return editedUser != null ? new ResponseEntity<>(editedUser, HttpStatus.OK):
-                new ResponseEntity<>(HttpStatus.NOT_FOUND);
+           new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
     @DeleteMapping("/{id}")
@@ -58,6 +58,6 @@ public class UserController {
         User user=userService.deleteUserById(id);
 
         return user != null ? new ResponseEntity<>(user, HttpStatus.OK):
-                new ResponseEntity<>(HttpStatus.NOT_FOUND);
+           new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 }

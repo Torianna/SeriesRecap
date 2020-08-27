@@ -25,7 +25,7 @@ public class SeriesController {
         List<Series> seriesList=seriesService.getAllSeries(user);
 
         return seriesList.isEmpty() ? new ResponseEntity<>(seriesList, HttpStatus.NO_CONTENT):
-                new ResponseEntity<>(seriesList,HttpStatus.OK);
+           new ResponseEntity<>(seriesList,HttpStatus.OK);
     }
 
     @GetMapping("/{id}")
@@ -34,7 +34,7 @@ public class SeriesController {
         Series series=seriesService.getSeriesById(id);
 
         return series != null ? new ResponseEntity<>(series, HttpStatus.OK):
-                new ResponseEntity<>(HttpStatus.NOT_FOUND);
+           new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
 
@@ -44,7 +44,7 @@ public class SeriesController {
         Series savedSeries= seriesService.saveSeries(series);
 
         return savedSeries != null ? new ResponseEntity<>(savedSeries, HttpStatus.OK):
-                new ResponseEntity<>(HttpStatus.NOT_FOUND);
+           new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
 
