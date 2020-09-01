@@ -13,4 +13,7 @@ public interface SeriesService {
 
     Series saveSeries(Series series);
 
+    void deleteSeriesById(int id);
+
+
 }
