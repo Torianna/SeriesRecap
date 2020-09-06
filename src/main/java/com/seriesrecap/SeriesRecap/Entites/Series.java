@@ -1,110 +1,92 @@
 package com.seriesrecap.SeriesRecap.Entites;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
-
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import javax.persistence.*;
 
-@Data
-@NoArgsConstructor
-@AllArgsConstructor
 @Entity
 @Table(name="series")
 public class Series {
 
-    @Id
-    @GeneratedValue
-    private int id;
+	  	@Id
+	    @GeneratedValue(strategy=GenerationType.IDENTITY)
+	    private int id;
 
+	    
+	    private String name;
+	    private String year;
+	    private String photo; //as an url
+	    private String description;
+	    private float totalScore;
+	    private float score;
+	    
+	    public int getId() {
+			return id;
+		}
 
-    private String name;
-    private String year;
-    private String photo; //as an url
-    private String description;
-    private float totalScore;
-    private float score;
+		public void setId(int id) {
+			this.id = id;
+		}
 
-    public int getId() {
-        return id;
-    }
+		public String getName() {
+			return name;
+		}
 
-    public void setId(int id) {
-        this.id = id;
-    }
+		public void setName(String name) {
+			this.name = name;
+		}
 
-    public String getName() {
-        return name;
-    }
+		public String getYear() {
+			return year;
+		}
 
-    public void setName(String name) {
-        this.name = name;
-    }
+		public void setYear(String year) {
+			this.year = year;
+		}
 
-    public String getYear() {
-        return year;
-    }
+		public String getPhoto() {
+			return photo;
+		}
 
-    public void setYear(String year) {
-        this.year = year;
-    }
+		public void setPhoto(String photo) {
+			this.photo = photo;
+		}
 
-    public String getPhoto() {
-        return photo;
-    }
+		public String getDescription() {
+			return description;
+		}
 
-    public void setPhoto(String photo) {
-        this.photo = photo;
-    }
+		public void setDescription(String description) {
+			this.description = description;
+		}
 
-    public String getDescription() {
-        return description;
-    }
+		public float getTotalScore() {
+			return totalScore;
+		}
 
-    public void setDescription(String description) {
-        this.description = description;
-    }
+		public void setTotalScore(float totalScore) {
+			this.totalScore = totalScore;
+		}
 
-    public float getTotalScore() {
-        return totalScore;
-    }
+		public float getScore() {
+			return score;
+		}
 
-    public void setTotalScore(float totalScore) {
-        this.totalScore = totalScore;
-    }
+		public void setScore(float score) {
+			this.score = score;
+		}
 
-    public float getScore() {
-        return score;
-    }
+		public User getUser() {
+			return user;
+		}
 
-    public void setScore(float score) {
-        this.score = score;
-    }
+		public void setUser(User user) {
+			this.user = user;
+		}
 
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
-    }
-
-    @ManyToOne(fetch = FetchType.LAZY, optional=false, cascade = CascadeType.DETACH)
-    @JoinColumn(name="user_id",nullable=false)
-    private User user;
-
-    /*@Override
-    public String toString() {
-        return "Series [id=" + id + ", name=" + name + ", year=" + year + ", photo=" + photo + ", description="
-           + description + ", totalScore=" + totalScore + ", score=" + score +  "]";
-    }*/
-
-
+		@ManyToOne(fetch = FetchType.LAZY, optional=false, cascade = CascadeType.DETACH)
+	    @JoinColumn(name="user_id",nullable=false)
+	    private User user;
 }

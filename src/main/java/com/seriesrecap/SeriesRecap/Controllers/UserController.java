@@ -4,14 +4,14 @@ package com.seriesrecap.SeriesRecap.Controllers;
 import java.util.List;
 
 import com.seriesrecap.SeriesRecap.Entites.User;
-import com.seriesrecap.SeriesRecap.Services.SeriesService;
-import com.seriesrecap.SeriesRecap.Services.UserService;
+import com.seriesrecap.SeriesRecap.Services.*;
 import lombok.AllArgsConstructor;
-
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import org.springframework.beans.factory.annotation.Autowired;
+
 
 @RestController
 @AllArgsConstructor
@@ -20,10 +20,10 @@ import org.springframework.web.bind.annotation.*;
 public class UserController {
 
 
-    @Autowired
+	@Autowired
     private SeriesService seriesService;
-
-    @Autowired
+	
+	@Autowired
     private UserService userService;
 
     @GetMapping("")
@@ -37,29 +37,28 @@ public class UserController {
     public ResponseEntity<User> getUserById(@PathVariable int id) {
         User user = userService.getUserById(id);
         return user != null ? new ResponseEntity<>(user, HttpStatus.OK) :
-           new ResponseEntity<>(HttpStatus.NOT_FOUND);
+                new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
     @PostMapping("")
     public ResponseEntity<User> addUser(@RequestBody User user) {
         User savedUser= userService.saveUser(user);
         return savedUser != null ? new ResponseEntity<>(savedUser, HttpStatus.OK):
-           new ResponseEntity<>(HttpStatus.NOT_FOUND);
+                new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
     @PutMapping("/{id}")
     public ResponseEntity<User> editUserById(@PathVariable int id,
-                                             @RequestBody User user) {
+                                                @RequestBody User user) {
         User editedUser =userService.editUserById(id, user);
         return editedUser != null ? new ResponseEntity<>(editedUser, HttpStatus.OK):
-           new ResponseEntity<>(HttpStatus.NOT_FOUND);
+                new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
     @DeleteMapping("/{id}")
     public ResponseEntity<User> deleteUserById(@PathVariable int id) {
         User user=userService.deleteUserById(id);
         return user != null ? new ResponseEntity<>(user, HttpStatus.OK):
-           new ResponseEntity<>(HttpStatus.NOT_FOUND);
-    }
-
+                new ResponseEntity<>(HttpStatus.NOT_FOUND);
+    }	
 }

@@ -3,7 +3,7 @@ import com.seriesrecap.SeriesRecap.Entites.User;
 import com.seriesrecap.SeriesRecap.Repositories.UserRepository;
 import com.seriesrecap.SeriesRecap.Services.UserService;
 import lombok.AllArgsConstructor;
-
+import org.springframework.web.bind.annotation.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,9 +15,9 @@ import java.util.Optional;
 @AllArgsConstructor
 public class UserServiceImpl implements UserService {
 
-    @Autowired
+	@Autowired
     private UserRepository userRepository;
-
+	
     @Override
     public List<User> getAllUsers() {
         return userRepository.findAll();
@@ -45,20 +45,21 @@ public class UserServiceImpl implements UserService {
         if (user.isPresent()) {
             userRepository.deleteById(id);
             return new User(userRepository.save(userCommand).getId(), userCommand.getUserName(),
-               userCommand.getPassword(), userCommand.getSeries());
+                    userCommand.getPassword(), userCommand.getSeries());
         }
         return null;
     }
 
     @Override
     public User saveUser(User user) {
+    	System.out.println("series "+user.getSeries());
         userRepository.save(user);
         return new User(user.getId(), user.getUserName(),
-           user.getPassword(), user.getSeries());
+                user.getPassword(), user.getSeries());
     }
-
+    
     @Override
     public User findByUserName(String userName) {
-        return userRepository.findByUserName(userName);
-    }
+		return userRepository.findByUserName(userName);
+	}
 }
