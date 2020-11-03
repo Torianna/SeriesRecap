@@ -5,88 +5,92 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
-@Table(name="series")
+//@Table(name="series")
 public class Series {
 
-	  	@Id
-	    @GeneratedValue(strategy=GenerationType.IDENTITY)
-	    private int id;
+	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	private int id;
+	private String name;
+	private String year;
+	private String photo; //as an url
+	private String description;
+	private float totalScore;
+	private float score;
 
+	@ManyToOne //(fetch = FetchType.LAZY, optional=false, cascade = CascadeType.DETACH)
+//	@JoinColumn(name="user_id",nullable=false)
+	private User user;
+
+//	@JsonIgnore
+//	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy="user")
+//	private List<Series> series;
 	    
-	    private String name;
-	    private String year;
-	    private String photo; //as an url
-	    private String description;
-	    private float totalScore;
-	    private float score;
-	    
-	    public int getId() {
-			return id;
-		}
+	public int getId() {
+		return id;
+	}
 
-		public void setId(int id) {
-			this.id = id;
-		}
+	public void setId(int id) {
+		this.id = id;
+	}
 
-		public String getName() {
-			return name;
-		}
+	public String getName() {
+		return name;
+	}
 
-		public void setName(String name) {
-			this.name = name;
-		}
+	public void setName(String name) {
+		this.name = name;
+	}
 
-		public String getYear() {
-			return year;
-		}
+	public String getYear() {
+		return year;
+	}
 
-		public void setYear(String year) {
-			this.year = year;
-		}
+	public void setYear(String year) {
+		this.year = year;
+	}
 
-		public String getPhoto() {
-			return photo;
-		}
+	public String getPhoto() {
+		return photo;
+	}
 
-		public void setPhoto(String photo) {
-			this.photo = photo;
-		}
+	public void setPhoto(String photo) {
+		this.photo = photo;
+	}
 
-		public String getDescription() {
-			return description;
-		}
+	public String getDescription() {
+		return description;
+	}
 
-		public void setDescription(String description) {
-			this.description = description;
-		}
+	public void setDescription(String description) {
+		this.description = description;
+	}
 
-		public float getTotalScore() {
-			return totalScore;
-		}
+	public float getTotalScore() {
+		return totalScore;
+	}
 
-		public void setTotalScore(float totalScore) {
-			this.totalScore = totalScore;
-		}
+	public void setTotalScore(float totalScore) {
+		this.totalScore = totalScore;
+	}
 
-		public float getScore() {
-			return score;
-		}
+	public float getScore() {
+		return score;
+	}
 
-		public void setScore(float score) {
-			this.score = score;
-		}
+	public void setScore(float score) {
+		this.score = score;
+	}
 
-		public User getUser() {
-			return user;
-		}
+	public User getUser() {
+		return user;
+	}
 
-		public void setUser(User user) {
-			this.user = user;
-		}
+	public void setUser(User user) {
+		this.user = user;
+	}
 
-		@ManyToOne(fetch = FetchType.LAZY, optional=false, cascade = CascadeType.DETACH)
-	    @JoinColumn(name="user_id",nullable=false)
-	    private User user;
 }

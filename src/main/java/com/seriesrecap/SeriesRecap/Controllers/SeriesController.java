@@ -18,6 +18,7 @@ import java.util.List;
 @RestController
 @AllArgsConstructor
 @RequestMapping("/seriesRecap/series")
+// /seriesRecap/user/{}/series
 @CrossOrigin
 public class SeriesController {
 
@@ -28,11 +29,10 @@ public class SeriesController {
     private UserService userService;
 
     @PostMapping("/userName/")
-    public ResponseEntity<List<Series>> getAllSeries (@RequestBody String userName
-    		){
+    public ResponseEntity<List<Series>> getAllSeries (@RequestBody String userName){
     	User user = userService.findByUserName(userName);
     	System.out.println("user " + user + " userName " + userName);
-        List<Series> seriesList=seriesService.getAllSeries(user);
+        List<Series> seriesList=seriesService.getAllSeriesByUser(user);
 
         return seriesList.isEmpty() ? new ResponseEntity(seriesList, HttpStatus.NO_CONTENT):
                 new ResponseEntity(seriesList,HttpStatus.OK);
@@ -46,6 +46,14 @@ public class SeriesController {
     }
 
 
+    @GetMapping("/")
+    public ResponseEntity<Series> getSeries (){
+        List<Series> series=seriesService.getAllSeries();
+        return series != null ? new ResponseEntity(series, HttpStatus.OK):
+                new ResponseEntity<>(HttpStatus.NOT_FOUND);
+    }
+
+
     @PostMapping("")
     public ResponseEntity<Series> saveSeries(@RequestBody Series series)
     {
@@ -53,7 +61,7 @@ public class SeriesController {
     	User user = userService.findByUserName(series.getUser().getUserName());
     	System.out.println("user " + user + " userName " + series.getUser().getUserName());
     	series.setUser(user);
-    	System.out.println("2 series " + series.getId() + " user " + series.getUser().getSeries().size());
+//    	System.out.println("2 series " + series.getId() + " user " + series.getUser().getSeries().size());
     	
         Series savedSeries= seriesService.saveSeries(series);
         System.out.println(savedSeries.getId());
