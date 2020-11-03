@@ -10,35 +10,33 @@ import java.util.List;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
-@Table(name="user")
+//@Table(name="user")
 public class User {
 
+	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	private int id;
+	private String userName;
+	private String password;
 
     public User(int id, String userName, String password, List<Series> series) {
 		super();
 		this.id = id;
 		this.userName = userName;
 		this.password = password;
-		this.series = series;
+	}
+
+	public User(int id, String userName, String password) {
+		super();
+		this.id = id;
+		this.userName = userName;
+		this.password = password;
 	}
 
 	public User() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-
-	@Id
-    @GeneratedValue(strategy=GenerationType.IDENTITY)
-    private int id;
-
-
-    private String userName;
-
-    private String password;
-
-    @JsonIgnore
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy="user")
-    private List<Series> series;
 
 	public int getId() {
 		return id;
@@ -64,11 +62,4 @@ public class User {
 		this.password = password;
 	}
 
-	public List<Series> getSeries() {
-		return series;
-	}
-
-	public void setSeries(List<Series> series) {
-		this.series = series;
-	}
 }

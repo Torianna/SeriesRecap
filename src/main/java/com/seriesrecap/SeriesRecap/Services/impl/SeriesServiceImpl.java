@@ -23,8 +23,14 @@ public class SeriesServiceImpl implements SeriesService {
     private SeriesRepository seriesRepository;
 	
     @Override
-    public List<Series> getAllSeries(User user) {
+    public List<Series> getAllSeriesByUser(User user) {
         List<Series> series =  seriesRepository.findByUser(user);
+        return series;
+    }
+
+    @Override
+    public List<Series> getAllSeries() {
+        List<Series> series =  seriesRepository.findAll();
         return series;
     }
 

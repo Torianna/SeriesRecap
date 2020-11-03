@@ -7,7 +7,9 @@ import java.util.List;
 
 public interface SeriesService {
 
-    List<Series> getAllSeries(User user);
+    List<Series> getAllSeries();
+
+    List<Series> getAllSeriesByUser(User user);
 
     Series getSeriesById(int id);
 
