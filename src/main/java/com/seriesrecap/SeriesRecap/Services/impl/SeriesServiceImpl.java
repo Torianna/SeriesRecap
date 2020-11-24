@@ -2,8 +2,10 @@ package com.seriesrecap.SeriesRecap.Services.impl;
 
 
 import com.seriesrecap.SeriesRecap.Entites.Series;
+import com.seriesrecap.SeriesRecap.Entites.ShareList;
 import com.seriesrecap.SeriesRecap.Entites.User;
 import com.seriesrecap.SeriesRecap.Repositories.SeriesRepository;
+import com.seriesrecap.SeriesRecap.Repositories.ShareRepository;
 import com.seriesrecap.SeriesRecap.Services.SeriesService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -21,11 +23,20 @@ public class SeriesServiceImpl implements SeriesService {
 
 	@Autowired
     private SeriesRepository seriesRepository;
+
+    @Autowired
+    private ShareRepository shareRepository;
 	
     @Override
     public List<Series> getAllSeriesByUser(User user) {
         List<Series> series =  seriesRepository.findByUser(user);
         return series;
+    }
+
+    @Override
+    public ShareList getListById(String seriesId) {
+        Optional<ShareList> series =  shareRepository.findById(seriesId);
+        return series.orElse(null);
     }
 
     @Override
@@ -45,7 +56,13 @@ public class SeriesServiceImpl implements SeriesService {
     public Series saveSeries(Series series) {
         return seriesRepository.save(series);
     }
-    
+
+
+    @Override
+    public ShareList saveList(ShareList shareList) {
+        return shareRepository.save(shareList);
+    }
+
     @Override
     public void deleteSeriesById(int id) {
 		seriesRepository.deleteById(id);
