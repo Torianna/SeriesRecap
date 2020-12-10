@@ -21,14 +21,20 @@ public class Series {
 	private float totalScore;
 	private float score;
 
-	@ManyToOne //(fetch = FetchType.LAZY, optional=false, cascade = CascadeType.DETACH)
-//	@JoinColumn(name="user_id",nullable=false)
+	@ManyToOne
 	private User user;
 
-//	@JsonIgnore
-//	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy="user")
-//	private List<Series> series;
-	    
+	@ManyToMany
+	private List<ShareList> shareLists;
+
+	public List<ShareList> getShareLists() {
+		return shareLists;
+	}
+
+	public void setShareLists(List<ShareList> shareLists) {
+		this.shareLists = shareLists;
+	}
+
 	public int getId() {
 		return id;
 	}

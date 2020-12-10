@@ -1,9 +1,13 @@
 package com.seriesrecap.SeriesRecap.Entites;
-
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
+import javax.persistence.UniqueConstraint;
 import java.util.List;
+
 
 @Entity
 public class ShareList {
@@ -11,15 +15,32 @@ public class ShareList {
    @Id
    String id;
 
-   @OneToMany
+   @ManyToMany
+   @JoinTable(name = "shareList_series_list", joinColumns = @JoinColumn(name = "shareList_id"), inverseJoinColumns = @JoinColumn(name = "series_id"))
    private List<Series> seriesList;
 
    public ShareList(String id, List<Series> seriesList){
       this.id = id;
-      this.seriesList = seriesList;
+     this.seriesList = seriesList;
    }
 
    public ShareList() {
       
+   }
+
+   public String getId() {
+      return id;
+   }
+
+   public void setId(String id) {
+      this.id = id;
+   }
+
+   public List<Series> getSeriesList() {
+      return seriesList;
+   }
+
+   public void setSeriesList(List<Series> seriesList) {
+      this.seriesList = seriesList;
    }
 }

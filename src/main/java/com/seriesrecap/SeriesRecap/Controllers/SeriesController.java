@@ -18,6 +18,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import java.nio.charset.Charset;
 import java.util.List;
 import java.util.Random;
+import java.util.UUID;
 
 @RestController
 @AllArgsConstructor
@@ -32,12 +33,10 @@ public class SeriesController {
 	@Autowired
     private UserService userService;
 
-   public String randomString() {
-      byte[] array = new byte[7]; // length is bounded by 7
-      new Random().nextBytes(array);
-      String generatedString = new String(array, Charset.forName("UTF-8"));
 
-      return generatedString;
+   public static String randomString() {
+      String uuid = UUID.randomUUID().toString().replace("-","").substring(0,5);
+      return uuid;
    }
 
     @GetMapping("/userName/{userName}")
@@ -61,13 +60,13 @@ public class SeriesController {
    @GetMapping("/share/{seriesId}")
    public ResponseEntity<Series> getSharedList (@PathVariable String seriesId){
       ShareList seriesList=seriesService.getListById(seriesId);
-      return seriesList != null ? new ResponseEntity(seriesList, HttpStatus.NO_CONTENT):
-         new ResponseEntity(seriesList,HttpStatus.OK);
+      return seriesList != null ? new ResponseEntity(seriesList, HttpStatus.OK):
+         new ResponseEntity(seriesList,HttpStatus.NOT_FOUND);
    }
 
    @PostMapping("/share")
    public ResponseEntity<ShareList> getLinkToShare (@RequestBody String userName){
-      User user = userService.findByUserName(userName);
+      User user = userService.findByUserName(userName.replace("\"", ""));
       String id = randomString();
       List<Series> seriesList=seriesService.getAllSeriesByUser(user);
       ShareList shareList = new ShareList(id, seriesList);
