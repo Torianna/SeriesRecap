@@ -16,12 +16,11 @@ public class ShareList {
    String id;
 
    @ManyToMany
-   @JoinTable(name = "shareList_series_list", joinColumns = @JoinColumn(name = "shareList_id"), inverseJoinColumns = @JoinColumn(name = "series_id"))
    private List<Series> seriesList;
 
    public ShareList(String id, List<Series> seriesList){
       this.id = id;
-     this.seriesList = seriesList;
+      this.seriesList = seriesList;
    }
 
    public ShareList() {
